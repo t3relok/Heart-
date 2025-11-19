@@ -1,156 +1,170 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>For Pranali ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Pranali 💖</title>
 
 <style>
-:root {
-  --pink1:#ff9bbd;
-  --pink2:#ff5f8a;
-  --dark:#14121c;
-}
+  body {
+    margin: 0;
+    padding: 0;
+    background: #0f0f17;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
 
-body {
-  margin:0;
-  background:var(--dark);
-  font-family: "Inter", sans-serif;
-  color:#fff;
-  padding:18px;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  min-height:100vh;
-}
+  .card {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
 
-/* CARD - small elegant box */
-.card {
-  width:100%;
-  max-width:420px;
-  background:rgba(255,255,255,0.08);
-  border-radius:20px;
-  padding:22px;
-  box-shadow:0 10px 32px rgba(0,0,0,0.55);
-  backdrop-filter:blur(8px);
-  position:relative;
-  overflow:hidden;
-}
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #ff7ca8, #ff4f7d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-/* Header Layout */
-header {
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
+  .lead {
+    font-size: 14px;
+    opacity: 0.8;
+  }
 
-.avatar {
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  background:linear-gradient(135deg, var(--pink1), var(--pink2));
-  display:grid;
-  place-items:center;
-  color:#000;
-  font-size:28px;
-  font-weight:700;
-}
+  .message {
+    font-size: 15px;
+    margin-top: 10px;
+  }
 
-h1 {
-  margin:0;
-  font-size:20px;
-  font-weight:700;
-}
-.lead {
-  font-size:14px;
-  opacity:0.85;
-}
+  .romance {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #ff8eb3;
+  }
 
-/* Message section */
-.message {
-  margin-top:20px;
-  background:rgba(255,255,255,0.06);
-  padding:14px;
-  border-radius:14px;
-  font-size:15px;
-}
-.romance {
-  color:#ffd6ea;
-  font-size:14px;
-  font-style:italic;
-  margin-top:6px;
-}
+  /* Surprise Button */
+  .surprise-btn {
+    margin-top: 14px;
+    width: 100%;
+    padding: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #ff7b9c, #ff477e);
+    color: #fff;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 10px rgba(255,90,120,0.5),
+                0 0 18px rgba(255,90,120,0.35);
+    transition: 0.25s ease;
+    cursor: pointer;
+  }
 
-/* PREMIUM SURPRISE BUTTON */
-.surprise-btn {
-  margin-top:14px;
-  width:100%;
-  padding:14px;
-  font-size:17px;
-  font-weight:700;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg, var(--pink2), var(--pink1));
-  color:#000;
-  letter-spacing:0.5px;
-  box-shadow:0 0 12px rgba(255,90,120,0.55),
-              0 0 20px rgba(255,90,120,0.35);
-  transition:0.25s ease;
-}
-.surprise-btn:hover {
-  transform:scale(1.03);
-  box-shadow:0 0 15px rgba(255,90,120,0.8),
-              0 0 26px rgba(255,90,120,0.5);
-}
-.surprise-btn:active {
-  transform:scale(0.96);
-}
+  .surprise-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 14px rgba(255,90,120,0.8),
+                0 0 22px rgba(255,90,120,0.6);
+  }
 
-/* Proposal Text */
-.proposal {
-  margin-top:26px;
-  text-align:center;
-}
-.reveal {
-  font-size:22px;
-  font-weight:800;
-  opacity:0;
-  transform:translateY(18px);
-  transition:all .6s ease;
-}
-.reveal.show {
-  opacity:1;
-  transform:translateY(0);
-}
+  /* Reveal text */
+  .reveal {
+    display: none;
+    font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
+    background: linear-gradient(90deg, #ff7ca8, #ff4f7d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-/* Choices Buttons */
-.choices {
-  margin-top:16px;
-  display:none;
-  flex-direction:column;
-  gap:12px;
-}
-.btn-yes, .btn-forever {
-  padding:12px;
-  width:100%;
-  border-radius:12px;
-  border:none;
-  font-size:16px;
-}
-.btn-yes {
-  background:rgba(255,255,255,0.10);
-  color:#fff;
-}
-.btn-forever {
-  background:linear-gradient(135deg, var(--pink1), #ffd0e4);
-  color:#000;
-  font-weight:700;
-}
+  /* Yes / Forever Buttons */
+  .choices {
+    display: none;
+    margin-top: 20px;
+  }
 
-/* Floating hearts */
-.hearts {
-  position:absolute;
-  inset:0;
+  .choices button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    color: #fff;
+    transition: 0.25s ease;
+    cursor: pointer;
+  }
+
+  .btn-yes {
+    background: linear-gradient(135deg, #8aff9a, #37d767);
+  }
+
+  .btn-forever {
+    background: linear-gradient(135deg, #ffd266, #ff9f1c);
+  }
+
+  .choices button:hover {
+    transform: scale(1.03);
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div>
+    <h1>Pranu, ek chhota sa prashna ahe… 💞</h1>
+    <p class="lead">Kya Kahu Ab..</p>
+  </div>
+
+  <div class="message">
+    Tujha ek photo madhe ghayal jhalela pagal mi...
+    <div class="romance">Mazhi feed change karnaari 😂</div>
+
+    <button id="showBtn" class="surprise-btn">✨ Tap for a Surprise ✨</button>
+  </div>
+
+  <div class="proposal">
+    <div id="reveal" class="reveal">Pranali, will you marry me? 💍</div>
+
+    <div id="choices" class="choices">
+      <button class="btn-yes" onclick="choose('yes')">Yes — I will ❤️</button>
+      <button class="btn-forever" onclick="choose('forever')">Yes — Forever 💞</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById("showBtn").onclick = function () {
+    document.getElementById("reveal").style.display = "block";
+    document.getElementById("choices").style.display = "block";
+  };
+
+  function choose(ans) {
+    if (ans === "yes") {
+      alert("Pranali said YES ❤️");
+    } else {
+      alert("Pranali said YES FOREVER 💞");
+    }
+  }
+</script>
+
+</body>
+</html>  inset:0;
   pointer-events:none;
   overflow:hidden;
 }
