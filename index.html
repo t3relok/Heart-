@@ -1,286 +1,273 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>For Pranali ❤️</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Pranali — Will you marry me?</title>
 
-<style>
-:root {
-  --pink1:#ff9bbd;
-  --pink2:#ff5f8a;
-  --dark:#14121c;
-}
+  <style>
+    :root {
+      --bg:#0f1020;
+      --glass:rgba(255,255,255,0.06);
+      --accent:#ff6b6b;
+      --accent2:#ff9a9e;
+    }
 
-body {
-  margin:0;
-  background:var(--dark);
-  font-family: "Inter", sans-serif;
-  color:#fff;
-  padding:18px;
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
-  min-height:100vh;
-}
+    * { box-sizing:border-box; }
 
-/* CARD - small elegant box */
-.card {
-  width:100%;
-  max-width:420px;
-  background:rgba(255,255,255,0.08);
-  border-radius:20px;
-  padding:22px;
-  box-shadow:0 10px 32px rgba(0,0,0,0.55);
-  backdrop-filter:blur(8px);
-  position:relative;
-  overflow:hidden;
-}
+    body {
+      margin:0;
+      background:var(--bg);
+      font-family: "Inter", sans-serif;
+      color:#fff;
+      padding:16px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:100vh;
+    }
 
-/* Header Layout */
-header {
-  display:flex;
-  gap:14px;
-  align-items:center;
-}
+    .card {
+      width:100%;
+      max-width:520px;
+      background:rgba(255,255,255,0.06);
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 10px 28px rgba(0,0,0,0.55);
+      position:relative;
+      overflow:hidden;
+    }
 
-.avatar {
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  background:linear-gradient(135deg, var(--pink1), var(--pink2));
-  display:grid;
-  place-items:center;
-  color:#000;
-  font-size:28px;
-  font-weight:700;
-}
+    header {
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
 
-h1 {
-  margin:0;
-  font-size:20px;
-  font-weight:700;
-}
-.lead {
-  font-size:14px;
-  opacity:0.85;
-}
+    .avatar {
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      background:linear-gradient(180deg,var(--accent),var(--accent2));
+      display:grid;
+      place-items:center;
+      font-size:30px;
+      color:#000;
+      font-weight:bold;
+    }
 
-/* Message section */
-.message {
-  margin-top:20px;
-  background:rgba(255,255,255,0.06);
-  padding:14px;
-  border-radius:14px;
-  font-size:15px;
-}
-.romance {
-  color:#ffd6ea;
-  font-size:14px;
-  font-style:italic;
-  margin-top:6px;
-}
+    h1 {
+      margin:0;
+      font-size:22px;
+      line-height:1.2;
+    }
 
-/* PREMIUM SURPRISE BUTTON */
-.surprise-btn {
-  margin-top:14px;
-  width:100%;
-  padding:14px;
-  font-size:17px;
-  font-weight:700;
-  border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg, var(--pink2), var(--pink1));
-  color:#000;
-  letter-spacing:0.5px;
-  box-shadow:0 0 12px rgba(255,90,120,0.55),
-              0 0 20px rgba(255,90,120,0.35);
-  transition:0.25s ease;
-}
-.surprise-btn:hover {
-  transform:scale(1.03);
-  box-shadow:0 0 15px rgba(255,90,120,0.8),
-              0 0 26px rgba(255,90,120,0.5);
-}
-.surprise-btn:active {
-  transform:scale(0.96);
-}
+    .lead {
+      font-size:14px;
+      opacity:0.85;
+    }
 
-/* Proposal Text */
-.proposal {
-  margin-top:26px;
-  text-align:center;
-}
-.reveal {
-  font-size:22px;
-  font-weight:800;
-  opacity:0;
-  transform:translateY(18px);
-  transition:all .6s ease;
-}
-.reveal.show {
-  opacity:1;
-  transform:translateY(0);
-}
+    .message {
+      background:var(--glass);
+      padding:16px;
+      border-radius:12px;
+      margin-top:20px;
+      font-size:16px;
+    }
 
-/* Choices Buttons */
-.choices {
-  margin-top:16px;
-  display:none;
-  flex-direction:column;
-  gap:12px;
-}
-.btn-yes, .btn-forever {
-  padding:12px;
-  width:100%;
-  border-radius:12px;
-  border:none;
-  font-size:16px;
-}
-.btn-yes {
-  background:rgba(255,255,255,0.10);
-  color:#fff;
-}
-.btn-forever {
-  background:linear-gradient(135deg, var(--pink1), #ffd0e4);
-  color:#000;
-  font-weight:700;
-}
+    .romance {
+      margin-top:10px;
+      color:#ffd6d6;
+      font-style:italic;
+      font-size:15px;
+    }
 
-/* Floating hearts */
-.hearts {
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-}
-.hearts i {
-  position:absolute;
-  background:linear-gradient(180deg,#ff9a9e,#ff6b6b);
-  width:16px;
-  height:16px;
-  transform:rotate(-45deg);
-  border-radius:4px;
-}
-.hearts i:before, .hearts i:after {
-  content:"";
-  position:absolute;
-  width:16px;
-  height:16px;
-  background:inherit;
-  border-radius:50%;
-}
-.hearts i:before { top:-8px; left:0; }
-.hearts i:after { left:8px; top:0; }
+    #showBtn {
+      margin-top:14px;
+      width:100%;
+      padding:12px;
+      border:0;
+      border-radius:12px;
+      background:linear-gradient(180deg,var(--accent),var(--accent2));
+      color:#000;
+      font-weight:bold;
+      font-size:16px;
+    }
 
-/* Confetti */
-.confetti-piece {
-  position:absolute;
-  width:10px;
-  height:16px;
-  opacity:0;
-}
+    .proposal {
+      margin-top:24px;
+      text-align:center;
+    }
 
-footer {
-  margin-top:16px;
-  text-align:center;
-  font-size:12px;
-  opacity:0.65;
-}
+    .reveal {
+      font-size:24px;
+      font-weight:800;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all .6s ease;
+    }
+    .reveal.show {
+      opacity:1;
+      transform:translateY(0);
+    }
 
-</style>
+    .choices {
+      margin-top:18px;
+      display:none;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .btn-yes, .btn-forever {
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      font-size:16px;
+      border:0;
+    }
+
+    .btn-yes {
+      background:rgba(255,255,255,0.12);
+      color:#fff;
+    }
+
+    .btn-forever {
+      background:linear-gradient(90deg,#ffd6d6,#ff9a9e);
+      color:#000;
+      font-weight:bold;
+    }
+
+    footer {
+      margin-top:16px;
+      text-align:center;
+      font-size:12px;
+      opacity:0.65;
+    }
+
+    /* floating hearts */
+    .hearts {
+      position:absolute; inset:0; pointer-events:none; overflow:hidden;
+    }
+    .hearts i {
+      position:absolute;
+      width:16px; height:16px;
+      background:linear-gradient(180deg,#ff9a9e,#ff6b6b);
+      transform:rotate(-45deg);
+      border-radius:4px;
+    }
+    .hearts i:before, .hearts i:after {
+      content:"";
+      position:absolute;
+      width:16px; height:16px;
+      background:inherit;
+      border-radius:50%;
+    }
+    .hearts i:before { top:-8px; left:0; }
+    .hearts i:after { left:8px; top:0; }
+
+    /* confetti */
+    .confetti-piece {
+      position:absolute;
+      width:10px; height:16px;
+      opacity:0;
+    }
+
+    @media (max-width:400px) {
+      h1 { font-size:20px; }
+      .avatar { width:64px; height:64px; font-size:26px; }
+      .reveal { font-size:20px; }
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="card">
-
   <div class="hearts"></div>
 
   <header>
     <div class="avatar">A</div>
     <div>
-      <h1>Pranali, ek chhota sa sawaal… 💞</h1>
-      <p class="lead">Tum mere dil ka sabse khoobsurat hissa ho.</p>
+      <h1>Pranali, ek chhota sa sawaal...</h1>
+      <p class="lead">Main chahta hoon ki tum meri zindagi ka hissa bano… hamesha ke liye.</p>
     </div>
   </header>
 
   <div class="message">
-    Tumhari muskaan ne mere dinon ko roshan kiya hai.  
-    <div class="romance">Tere bina sab adhoora lagta hai…</div>
+    Tumhari muskaan ne mujhe behtar banaya hai.  
+    <div class="romance">Tumhara saath ho toh sab kuch khoobsurat lagta hai.</div>
 
-    <button id="showBtn" class="surprise-btn">✨ Tap for a Surprise ✨</button>
+    <button id="showBtn">Click here for a surprise ✨</button>
   </div>
 
   <div class="proposal">
-    <div id="reveal" class="reveal">Pranali, will you marry me? 💍</div>
+    <div id="reveal" class="reveal">Pranali, will you marry me?</div>
 
     <div id="choices" class="choices">
       <button class="btn-yes" onclick="choose('yes')">Yes — I will ❤️</button>
-      <button class="btn-forever" onclick="choose('forever')">Yes — Forever 💞</button>
+      <button class="btn-forever" onclick="choose('forever')">Yes — Forever 💍</button>
     </div>
   </div>
 
   <footer>With love, Aryan</footer>
-
 </div>
 
-
 <script>
-// floating hearts
-function makeHearts() {
-  const b = document.querySelector(".hearts");
-  for (let i=0; i<12; i++) {
-    let h = document.createElement("i");
-    let s = 12 + Math.random()*20;
-    h.style.width = s+"px";
-    h.style.height = s+"px";
-    h.style.left = (Math.random()*100)+"%";
-    h.style.top = (30+Math.random()*60)+"%";
-    b.appendChild(h);
+  // hearts
+  function makeHearts() {
+    const box = document.querySelector('.hearts');
+    for (let i = 0; i < 12; i++) {
+      let h = document.createElement('i');
+      let size = 12 + Math.random()*20;
+      h.style.width = size+"px";
+      h.style.height = size+"px";
+      h.style.left = (Math.random()*100)+"%";
+      h.style.top = (40 + Math.random()*60)+"%";
+      box.appendChild(h);
 
-    h.animate(
-      [{transform:"translateY(0px)"},{transform:"translateY(-140px)"}],
-      {duration:6000+Math.random()*6000,iterations:Infinity}
-    );
+      h.animate(
+        [{ transform:"translateY(0px)" }, { transform:"translateY(-120px)" }],
+        { duration:5000 + Math.random()*5000, iterations:Infinity }
+      );
+    }
   }
-}
-makeHearts();
+  makeHearts();
 
-const btn = document.getElementById("showBtn");
-const reveal = document.getElementById("reveal");
-const choices = document.getElementById("choices");
+  const btn = document.getElementById("showBtn");
+  const reveal = document.getElementById("reveal");
+  const choices = document.getElementById("choices");
 
-btn.onclick = () => {
-  reveal.classList.add("show");
-  setTimeout(() => choices.style.display="flex", 800);
-};
+  btn.onclick = () => {
+    reveal.classList.add("show");
+    setTimeout(() => choices.style.display = "flex", 800);
+  };
 
-function choose(type){
-  spawnConfetti();
-  reveal.textContent =
-    type === "forever"
+  function choose(type) {
+    spawnConfetti();
+    reveal.textContent = type === "forever"
       ? "Haan… hamesha ke liye ❤️"
       : "Yes! Tum mera sab kuch ho ❤️";
-  choices.style.display="none";
-}
 
-function spawnConfetti(){
-  const colors = ["#ff6b6b","#ffd6d6","#ff9a9e","#fff3c4"];
-  for (let i=0;i<40;i++){
-    let p=document.createElement("div");
-    p.className="confetti-piece";
-    p.style.left=(20+Math.random()*60)+"%";
-    p.style.top="10%";
-    p.style.background=colors[Math.floor(Math.random()*colors.length)];
-    document.body.appendChild(p);
-
-    p.animate([
-      {transform:"translate(0,0)",opacity:1},
-      {transform:`translate(${(Math.random()*400-200)}px, 620px) rotate(${Math.random()*600}deg)`,opacity:0}
-    ],{duration:1200+Math.random()*700,easing:"ease-out"}).onfinish=()=>p.remove();
+    choices.style.display = "none";
   }
-}
+
+  function spawnConfetti() {
+    const colors = ["#ff6b6b","#ffd6d6","#ff9a9e","#fff3c4"];
+    for (let i=0;i<40;i++) {
+      let p = document.createElement("div");
+      p.className = "confetti-piece";
+      p.style.left = (20+Math.random()*60)+"%";
+      p.style.top = "10%";
+      p.style.background = colors[Math.floor(Math.random()*colors.length)];
+      document.body.appendChild(p);
+
+      p.animate([
+        { transform:"translate(0,0)", opacity:1 },
+        { transform:`translate(${(Math.random()*400-200)}px, 600px) rotate(${Math.random()*600}deg)`, opacity:0 }
+      ], { duration:1200 + Math.random()*600, easing:"ease-out" })
+      .onfinish = ()=> p.remove();
+    }
+  }
 </script>
 
 </body>
