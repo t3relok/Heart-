@@ -1,137 +1,274 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>Pranali — Will you marry me?</title>
+
   <style>
-    :root{--bg:#0f1020;--glass:rgba(255,255,255,0.06);--accent:#ff6b6b;--accent2:#ff9a9e}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', Arial}
-    body{background: radial-gradient(1200px 600px at 10% 20%, rgba(255,105,135,0.07), transparent), radial-gradient(900px 400px at 90% 80%, rgba(255,170,170,0.05), transparent), var(--bg);display:grid;place-items:center;color:#fff}
-    .card{width:min(920px,94vw);max-width:1040px;padding:32px;border-radius:18px;background:linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));box-shadow:0 10px 30px rgba(0,0,0,0.6);position:relative;overflow:hidden}
-    header{display:flex;gap:18px;align-items:center}
-    .avatar{width:86px;height:86px;border-radius:50%;background:linear-gradient(180deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:700;font-size:34px;color:#200}
-    h1{margin:0;font-size:28px;letter-spacing:0.2px}
-    p.lead{margin:8px 0 18px;color:rgba(255,255,255,0.85)}
-    .scene{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center}
-    .left{padding:18px}
-    .message{background:var(--glass);padding:22px;border-radius:12px;backdrop-filter:blur(6px)}
-    .big{font-size:20px;line-height:1.45}
-    .romance{margin-top:14px;font-style:italic;color:#ffd6d6}
-    .ring{display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
-    .ring button{background:linear-gradient(180deg,var(--accent),var(--accent2));border:0;padding:12px 18px;border-radius:12px;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 8px 22px rgba(255,105,135,0.12);color:#200}
-    .proposal{display:grid;place-items:center;padding:18px;border-radius:12px}
-    .reveal{font-size:28px;font-weight:800;text-align:center;opacity:0;transform:translateY(18px);transition:all 600ms cubic-bezier(.2,.9,.2,1)}
-    .reveal.show{opacity:1;transform:translateY(0)}
-    .choices{display:flex;gap:12px;margin-top:18px}
-    .btn-yes{padding:10px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.08);background:transparent;color:#fff;cursor:pointer}
-    .btn-forever{padding:10px 16px;border-radius:10px;border:0;background:linear-gradient(90deg,#ffd6d6,#ff9a9e);color:#200;font-weight:700;cursor:pointer}
-    /* hearts animation */
-    .hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-    .hearts i{position:absolute;display:block;width:18px;height:18px;background:linear-gradient(180deg,#ff9a9e,#ff6b6b);transform:rotate(-45deg);border-radius:4px 4px 0 0;opacity:0.9}
-    .hearts i:after,.hearts i:before{content:"";position:absolute;width:18px;height:18px;background:inherit;border-radius:50%}
-    .hearts i:before{top:-9px;left:0}
-    .hearts i:after{left:9px;top:0}
-    footer{display:flex;justify-content:space-between;align-items:center;margin-top:18px;color:rgba(255,255,255,0.6)}
-    .note{font-size:13px}
+    :root {
+      --bg:#0f1020;
+      --glass:rgba(255,255,255,0.06);
+      --accent:#ff6b6b;
+      --accent2:#ff9a9e;
+    }
+
+    * { box-sizing:border-box; }
+
+    body {
+      margin:0;
+      background:var(--bg);
+      font-family: "Inter", sans-serif;
+      color:#fff;
+      padding:16px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:100vh;
+    }
+
+    .card {
+      width:100%;
+      max-width:520px;
+      background:rgba(255,255,255,0.06);
+      border-radius:16px;
+      padding:20px;
+      box-shadow:0 10px 28px rgba(0,0,0,0.55);
+      position:relative;
+      overflow:hidden;
+    }
+
+    header {
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .avatar {
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      background:linear-gradient(180deg,var(--accent),var(--accent2));
+      display:grid;
+      place-items:center;
+      font-size:30px;
+      color:#000;
+      font-weight:bold;
+    }
+
+    h1 {
+      margin:0;
+      font-size:22px;
+      line-height:1.2;
+    }
+
+    .lead {
+      font-size:14px;
+      opacity:0.85;
+    }
+
+    .message {
+      background:var(--glass);
+      padding:16px;
+      border-radius:12px;
+      margin-top:20px;
+      font-size:16px;
+    }
+
+    .romance {
+      margin-top:10px;
+      color:#ffd6d6;
+      font-style:italic;
+      font-size:15px;
+    }
+
+    #showBtn {
+      margin-top:14px;
+      width:100%;
+      padding:12px;
+      border:0;
+      border-radius:12px;
+      background:linear-gradient(180deg,var(--accent),var(--accent2));
+      color:#000;
+      font-weight:bold;
+      font-size:16px;
+    }
+
+    .proposal {
+      margin-top:24px;
+      text-align:center;
+    }
+
+    .reveal {
+      font-size:24px;
+      font-weight:800;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all .6s ease;
+    }
+    .reveal.show {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .choices {
+      margin-top:18px;
+      display:none;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .btn-yes, .btn-forever {
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      font-size:16px;
+      border:0;
+    }
+
+    .btn-yes {
+      background:rgba(255,255,255,0.12);
+      color:#fff;
+    }
+
+    .btn-forever {
+      background:linear-gradient(90deg,#ffd6d6,#ff9a9e);
+      color:#000;
+      font-weight:bold;
+    }
+
+    footer {
+      margin-top:16px;
+      text-align:center;
+      font-size:12px;
+      opacity:0.65;
+    }
+
+    /* floating hearts */
+    .hearts {
+      position:absolute; inset:0; pointer-events:none; overflow:hidden;
+    }
+    .hearts i {
+      position:absolute;
+      width:16px; height:16px;
+      background:linear-gradient(180deg,#ff9a9e,#ff6b6b);
+      transform:rotate(-45deg);
+      border-radius:4px;
+    }
+    .hearts i:before, .hearts i:after {
+      content:"";
+      position:absolute;
+      width:16px; height:16px;
+      background:inherit;
+      border-radius:50%;
+    }
+    .hearts i:before { top:-8px; left:0; }
+    .hearts i:after { left:8px; top:0; }
+
     /* confetti */
-    .confetti-piece{position:absolute;width:10px;height:16px;opacity:0}
-    @media (max-width:880px){.scene{grid-template-columns:1fr;}.ring{order:-1}}
-    /* print */
-    @media print{body{background:#fff;color:#000} .card{box-shadow:none;border-radius:0}}
+    .confetti-piece {
+      position:absolute;
+      width:10px; height:16px;
+      opacity:0;
+    }
+
+    @media (max-width:400px) {
+      h1 { font-size:20px; }
+      .avatar { width:64px; height:64px; font-size:26px; }
+      .reveal { font-size:20px; }
+    }
   </style>
 </head>
+
 <body>
-  <div class="card" role="main">
-    <div class="hearts" aria-hidden="true"></div>
-    <header>
-      <div class="avatar">A</div>
-      <div>
-        <h1>Pranali, ek chhota sa sawaal...</h1>
-        <p class="lead">Main chahata hoon ki tum mere saath zindagi ka har subah aur har shaam bitao.</p>
-      </div>
-    </header><div class="scene">
-  <div class="left">
-    <div class="message">
-      <div class="big">
-        <div class="romance">Tumhari muskaan ne mujhe behtar banaya. Tumhara saath chaahe har choti baat ho ya bada sapna — main hamesha tumhare saath hoon.</div>
-      </div>
-      <div style="margin-top:16px;">
-        <button id="showBtn" class="ringBtn">Click here for a surprise ✨</button>
-      </div>
+
+<div class="card">
+  <div class="hearts"></div>
+
+  <header>
+    <div class="avatar">A</div>
+    <div>
+      <h1>Pranali, ek chhota sa sawaal...</h1>
+      <p class="lead">Main chahta hoon ki tum meri zindagi ka hissa bano… hamesha ke liye.</p>
+    </div>
+  </header>
+
+  <div class="message">
+    Tumhari muskaan ne mujhe behtar banaya hai.  
+    <div class="romance">Tumhara saath ho toh sab kuch khoobsurat lagta hai.</div>
+
+    <button id="showBtn">Click here for a surprise ✨</button>
+  </div>
+
+  <div class="proposal">
+    <div id="reveal" class="reveal">Pranali, will you marry me?</div>
+
+    <div id="choices" class="choices">
+      <button class="btn-yes" onclick="choose('yes')">Yes — I will ❤️</button>
+      <button class="btn-forever" onclick="choose('forever')">Yes — Forever 💍</button>
     </div>
   </div>
 
-  <aside class="ring">
-    <div class="proposal">
-      <div id="reveal" class="reveal">Pranali, will you marry me?</div>
-      <div class="choices" id="choices" style="display:none">
-        <button class="btn-yes" onclick="choose('yes')">Yes — I will ❤️</button>
-        <button class="btn-forever" onclick="choose('forever')">Yes — Forever 💍</button>
-      </div>
-    </div>
-  </aside>
+  <footer>With love, Aryan</footer>
 </div>
 
-<footer>
-  <div class="note">Tip: Play her favourite song softly while showing this.</div>
-  <div><small>With love, Aryan</small></div>
-</footer>
+<script>
+  // hearts
+  function makeHearts() {
+    const box = document.querySelector('.hearts');
+    for (let i = 0; i < 12; i++) {
+      let h = document.createElement('i');
+      let size = 12 + Math.random()*20;
+      h.style.width = size+"px";
+      h.style.height = size+"px";
+      h.style.left = (Math.random()*100)+"%";
+      h.style.top = (40 + Math.random()*60)+"%";
+      box.appendChild(h);
 
-  </div>  <script>
-    // create floating hearts
-    function makeHearts(){
-      const container=document.querySelector('.hearts');
-      for(let i=0;i<12;i++){
-        const el=document.createElement('i');
-        const size=12+Math.random()*28;
-        el.style.width=size+'px'; el.style.height=size+'px';
-        el.style.left=(Math.random()*100)+'%';
-        el.style.top=(30+Math.random()*70)+'%';
-        el.style.opacity=0.8+Math.random()*0.3;
-        el.style.transform='rotate('+(-40+Math.random()*80)+'deg)';
-        container.appendChild(el);
-        // animate
-        const dur=8000+Math.random()*8000;
-        el.animate([{transform:el.style.transform+' translateY(0px) scale(1)'},{transform:el.style.transform+' translateY(-120px) scale(1.05)'}],{duration:dur,iterations:Infinity,easing:'linear'});
-      }
+      h.animate(
+        [{ transform:"translateY(0px)" }, { transform:"translateY(-120px)" }],
+        { duration:5000 + Math.random()*5000, iterations:Infinity }
+      );
     }
-    makeHearts();
+  }
+  makeHearts();
 
-    // reveal logic
-    const btn=document.getElementById('showBtn');
-    const reveal=document.getElementById('reveal');
-    const choices=document.getElementById('choices');
-    btn.addEventListener('click',()=>{
-      reveal.classList.add('show');
-      setTimeout(()=>choices.style.display='flex',800);
-      // pop a soft sound if available
-      try{const a=new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA='); a.play().catch(()=>{});}catch(e){}
-    });
+  const btn = document.getElementById("showBtn");
+  const reveal = document.getElementById("reveal");
+  const choices = document.getElementById("choices");
 
-    // confetti when she chooses yes
-    function choose(type){
-      spawnConfetti();
-      // friendly text change
-      reveal.textContent = type==='forever' ? 'Haan! Tum mera humsafar banogi?' : 'Haan! Tum mere saath ho?';
-      choices.style.display='none';
-      // small ring pulse
-      document.body.animate([{filter:'brightness(1)'},{filter:'brightness(1.06)'},{filter:'brightness(1)'}],{duration:600,iterations:2});
+  btn.onclick = () => {
+    reveal.classList.add("show");
+    setTimeout(() => choices.style.display = "flex", 800);
+  };
+
+  function choose(type) {
+    spawnConfetti();
+    reveal.textContent = type === "forever"
+      ? "Haan… hamesha ke liye ❤️"
+      : "Yes! Tum mera sab kuch ho ❤️";
+
+    choices.style.display = "none";
+  }
+
+  function spawnConfetti() {
+    const colors = ["#ff6b6b","#ffd6d6","#ff9a9e","#fff3c4"];
+    for (let i=0;i<40;i++) {
+      let p = document.createElement("div");
+      p.className = "confetti-piece";
+      p.style.left = (20+Math.random()*60)+"%";
+      p.style.top = "10%";
+      p.style.background = colors[Math.floor(Math.random()*colors.length)];
+      document.body.appendChild(p);
+
+      p.animate([
+        { transform:"translate(0,0)", opacity:1 },
+        { transform:`translate(${(Math.random()*400-200)}px, 600px) rotate(${Math.random()*600}deg)`, opacity:0 }
+      ], { duration:1200 + Math.random()*600, easing:"ease-out" })
+      .onfinish = ()=> p.remove();
     }
+  }
+</script>
 
-    function spawnConfetti(){
-      const count=48; const colors=['#ff6b6b','#ffd6d6','#ff9a9e','#fff3c4'];
-      for(let i=0;i<count;i++){
-        const el=document.createElement('div'); el.className='confetti-piece';
-        el.style.left=(20+Math.random()*60)+'%'; el.style.top='10%';
-        el.style.background=colors[Math.floor(Math.random()*colors.length)];
-        el.style.width=(6+Math.random()*10)+'px'; el.style.height=(8+Math.random()*18)+'px';
-        el.style.opacity=1; el.style.transform='rotate('+Math.random()*360+'deg)';
-        document.body.appendChild(el);
-        const dx=(Math.random()*1200-600); const dy=800+Math.random()*200;
-        el.animate([{transform:'translate(0,0) rotate('+Math.random()*360+'deg)',opacity:1},{transform:'translate('+dx+'px,'+dy+'px) rotate('+(Math.random()*720)+'deg)',opacity:0}],{duration:1400+Math.random()*800,easing:'cubic-bezier(.15,.8,.25,1)'}).onfinish=()=>el.remove();
-      }
-    }
-  </script></body>
+</body>
 </html>
